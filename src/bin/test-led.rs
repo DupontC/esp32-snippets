@@ -15,10 +15,11 @@ fn main() {
     let mut led = PinDriver::output(peripherals.pins.gpio4).unwrap();
 
     loop {
-
+        // off
         led.set_high().unwrap();
         thread::sleep(Duration::from_millis(1000));
 
+        // on
         led.set_low().unwrap();
         thread::sleep(Duration::from_millis(1000));
         info!("blink");

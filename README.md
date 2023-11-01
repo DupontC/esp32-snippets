@@ -13,11 +13,11 @@
 - 3V3 = pour l'alimentation des circuits
 - GPIO 
 - UART = avec les broches de type RX et TX
-- ANALOGUE = avec les broches ADC2
+- ANALOGUE = les broches ADC2 permettent de lire des données analogique.
 - DAC 
 - TOUCH 
 - RTC 
-- I2C = avec les broches SCL & SDA
+- I2C = avec les broches SCL & SDA, connecter des périgique comme des ecrans
 - SPI = avec les broches de type VPSI & HSPI
 
 ## Composants
@@ -29,4 +29,6 @@
 [led](./doc/led.md)
 
 [capteurs d'humidité](./doc/capteur-humidite.md)
+
+[Wifi](./src/bin/test-wifi.rs)
 

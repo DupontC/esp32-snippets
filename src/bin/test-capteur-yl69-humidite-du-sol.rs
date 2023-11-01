@@ -20,9 +20,9 @@ fn main() {
     let peripherals = Peripherals::take().unwrap();
     let pins = peripherals.pins;
 
-    // Init adc driver pour lire et convertire une valeur analogique en digital
-    let mut adc = AdcDriver::new(peripherals.adc2, &Config::new()).unwrap();
-    let mut adc_pin_yl69 = AdcChannelDriver::<{ adc::attenuation::DB_11 }, _>::new(pins.gpio4).unwrap();
+    // Initialisation du driver ADC pour lire et convertir une valeur analogique en digital
+    let mut adc = AdcDriver::new(peripherals.adc2, &Config::new())?;
+    let mut adc_pin_yl69 = AdcChannelDriver::<{ adc::attenuation::DB_11 }, _>::new(pins.gpio4)?;
 
     loop {
         let value = adc.read(&mut adc_pin_yl69).unwrap();
