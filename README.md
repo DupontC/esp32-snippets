@@ -9,8 +9,8 @@
 
 #### Les interfaces
 
-- GND 
 - 3V3 = pour l'alimentation des circuits
+- GND = sortie circuit pour la terre
 - GPIO 
 - UART = avec les broches de type RX et TX
 - ANALOGUE = les broches ADC2 permettent de lire des données analogique.
@@ -18,7 +18,7 @@
 - TOUCH 
 - RTC 
 - I2C = avec les broches SCL & SDA, connecter des périgique comme des ecrans
-- SPI = avec les broches de type VPSI & HSPI
+- SPI = avec les broches de type VSPI & HSPI
 
 ## Composants
 
