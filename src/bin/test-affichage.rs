@@ -9,7 +9,6 @@ use embedded_graphics::{
 };
 use esp_idf_hal::i2c;
 use esp_idf_hal::peripherals::Peripherals;
-use log::{error, info};
 use ssd1306::{I2CDisplayInterface, prelude::*, Ssd1306};
 
 //  cargo build --release --bin test-affichage
@@ -29,7 +28,7 @@ fn main() {
         &i2c::I2cConfig::default()
     ).unwrap();
 
-    // init configure i2c driver pour de l'affichage sur un composant ssd1306
+    // configure le i2c driver pour de l'affichage sur un composant de type tssd1306
     let mut display = Ssd1306::new(
         I2CDisplayInterface::new(i2c_driver),
         DisplaySize128x64,
@@ -49,6 +48,7 @@ fn main() {
         .unwrap();
 
 
+    // flush pour forcer l'affichage
     display.flush().unwrap();
 
 
