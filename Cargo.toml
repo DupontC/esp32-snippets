@@ -24,13 +24,13 @@ experimental = ["esp-idf-svc/experimental"]
 embassy = ["esp-idf-svc/embassy-sync", "esp-idf-svc/critical-section", "esp-idf-svc/embassy-time-driver"]
 
 [dependencies]
-log = { version = "0.4", default-features = false, features = [] }
-esp-idf-svc = { version = "0.47.1", default-features = false}
-esp-idf-sys = { version = "0.33.5", default-features = false }
-esp-idf-hal = { version = "0.42.4", default-features = false }
+log = { version = "0.4.20", default-features = false, features = [] }
+esp-idf-svc = { version = "0.48.0", default-features = false}
+esp-idf-sys = { version = "0.34.0", default-features = false }
+esp-idf-hal = { version = "0.43.0", default-features = false }
 
-embedded-svc = "0.26.1"
-embedded-hal = "1.0.0-rc.1"
+embedded-svc = "0.27.0"
+embedded-hal = "1.0.0"
 embedded-graphics = "0.8.1"
 
 ssd1306 = "0.8.4"

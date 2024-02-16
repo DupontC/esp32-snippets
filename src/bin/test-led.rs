@@ -4,7 +4,7 @@ use esp_idf_hal::gpio::PinDriver;
 use esp_idf_hal::peripherals::Peripherals;
 use log::info;
 
-
+//  . $HOME/export-esp.sh
 //  cargo build --release --bin test-led
 //  cargo run --release --bin test-led
 

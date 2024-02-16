@@ -11,6 +11,7 @@ use esp_idf_hal::i2c;
 use esp_idf_hal::peripherals::Peripherals;
 use ssd1306::{I2CDisplayInterface, prelude::*, Ssd1306};
 
+//  . $HOME/export-esp.sh
 //  cargo build --release --bin test-affichage
 //  cargo run --release --bin test-affichage
 

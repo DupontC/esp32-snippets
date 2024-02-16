@@ -8,7 +8,7 @@ use esp_idf_hal::adc::config::Config;
 use esp_idf_hal::peripherals::Peripherals;
 use log::info;
 
-
+//  . $HOME/export-esp.sh
 //  cargo build --release --bin test-capteur-yl69-humidite-du-sol
 //  cargo run --release --bin test-capteur-yl69-humidite-du-sol
 

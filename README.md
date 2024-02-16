@@ -32,3 +32,5 @@
 
 [Wifi](./src/bin/test-wifi.rs)
 
+[Relay](./src/bin/test-relay.rs)
+

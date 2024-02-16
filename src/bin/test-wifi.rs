@@ -10,6 +10,7 @@ use esp_idf_svc::nvs::EspDefaultNvsPartition;
 use esp_idf_svc::wifi::EspWifi;
 use log::{error, info, warn};
 
+//  . $HOME/export-esp.sh
 //  cargo build --release --bin test-wifi
 //  cargo run --release --bin test-wifi
 
