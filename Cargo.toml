@@ -34,6 +34,7 @@ embedded-hal = "1.0.0"
 embedded-graphics = "0.8.1"
 
 ssd1306 = "0.8.4"
+ds323x = "0.5.1"
 
 [build-dependencies]
 embuild = "0.31.4"
