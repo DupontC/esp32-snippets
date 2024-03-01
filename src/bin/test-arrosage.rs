@@ -1,19 +1,22 @@
 use std::thread;
-use std::time::{Duration, Instant};
+use std::time::Duration;
+
+use ds323x::Ds323x;
+use ds323x::Rtcc;
 use embedded_graphics::{
     mono_font::{ascii::FONT_6X10, MonoTextStyleBuilder},
     pixelcolor::BinaryColor,
     prelude::*,
     text::{Baseline, Text},
 };
-use ssd1306::{I2CDisplayInterface, prelude::*, Ssd1306};
-use esp_idf_hal::i2c;
-use esp_idf_hal::peripherals::Peripherals;
-use esp_idf_hal::gpio::PinDriver;
 use esp_idf_hal::adc::{AdcChannelDriver, AdcDriver, attenuation};
 use esp_idf_hal::adc::config::Config;
+use esp_idf_hal::gpio::PinDriver;
+use esp_idf_hal::i2c;
+use esp_idf_hal::i2c::I2cConfig;
+use esp_idf_hal::peripherals::Peripherals;
 use log::info;
-
+use ssd1306::{I2CDisplayInterface, prelude::*, Ssd1306};
 
 //  . $HOME/export-esp.sh
 //  get_esprs
@@ -29,16 +32,19 @@ fn main() {
     let pins = peripherals.pins;
 
     // Initialisation du driver i2c
-    let i2c_driver = i2c::I2cDriver::new(
+    let  i2c_driver = i2c::I2cDriver::new(
         peripherals.i2c0,
         pins.gpio21, // sda
         pins.gpio22, // sci
         &i2c::I2cConfig::default(),
     ).unwrap();
 
-    // configure le i2c driver pour de l'affichage sur un composant de type tssd1306
+    let bus = shared_bus::BusManagerSimple::new(i2c_driver);
+    let mut rtc = Ds323x::new_ds3231(bus.acquire_i2c());
+
+    // configure le i2c driver pour de l'affichage sur un composant de type ssd1306
     let mut display = Ssd1306::new(
-        I2CDisplayInterface::new(i2c_driver),
+        I2CDisplayInterface::new(bus.acquire_i2c()),
         DisplaySize128x64,
         DisplayRotation::Rotate0,
     ).into_buffered_graphics_mode();
@@ -70,8 +76,13 @@ fn main() {
         let value = adc.read(&mut adc_pin_yl69).unwrap();
         info!("valeur yl69 {}", value);
         display.clear_buffer();
-        let message = format!("{} {}","valeur yl69", value.to_string());
-        Text::with_baseline(&*message, Point::zero(), text_style, Baseline::Top)
+        let humiditeMessage = format!("{} {}","valeur yl69", value.to_string());
+        Text::with_baseline(&*humiditeMessage, Point::zero(), text_style, Baseline::Top)
+            .draw(&mut display)
+            .unwrap();
+        let timeMessage = format!("Heure : {}", rtc.time().unwrap());
+        info!("{}", timeMessage);
+        Text::with_baseline(&*timeMessage,  Point::new(0, 15) , text_style, Baseline::Top)
             .draw(&mut display)
             .unwrap();
         if value > LIMITE_DECLENCHEMENT_POMPE {
